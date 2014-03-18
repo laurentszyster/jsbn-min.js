@@ -5,7 +5,7 @@ Two flavors of Tom Wu's pure JavaScript implementation of arbitrary-precision in
 Synopsis - Key Agreement.
 ---
 Generate ECDH keys and return immediately stringifiable objects that can be stored, loaded and exchanged between JSON applications to compute their shared secret.
-```
+```javascript
 var curve = jsbn.ec.curve("secp256r1"),
 Alice = jsbn.ec.generate(curve),
 Bob = jsbn.ec.generate(curve),
@@ -27,12 +27,12 @@ window.locaStorage.setItem("MyKey", JSON.stringify(json));
 Read a JSON record from storage as a public RSA key and encrypt something.
 ```javascript
 var json = JSON.parse(window.locaStorage.getItem("MyKey")),
-public = jsbn.rsa.setPublic(json),
-encrypted = public.encrypt("something");
+publicKey = jsbn.rsa.setPublic(json),
+encrypted = publicKey.encrypt("something");
 ```
 Read a JSON record from storage as private RSA key and decrypt that something.
 ```javascript
 var json = JSON.parse(window.locaStorage.getItem("MyKey")),
-private = jsbn.rsa.setPrivate(json),
-cleartext = private.decrypt(encrypted);
+privateKey = jsbn.rsa.setPrivate(json),
+cleartext = privateKey.decrypt(encrypted);
 ```
