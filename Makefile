@@ -18,6 +18,7 @@ ugly: deps/jsbn
 rsa: deps/jsbn
 	uglifyjs \
 		deps/jsbn/jsbn.js \
+		deps/jsbn/prng4.js \
 		deps/jsbn/rng.js \
 		deps/jsbn/rsa.js \
 		deps/jsbn/sha1.js \
