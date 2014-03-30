@@ -6,10 +6,7 @@ Three flavors of Tom Wu's library, enclosed with a practical API and minified: `
 
 Synopsis
 ---
-
-### jsbn
-
-All three distributables share a common API that provide access to a selection of JSBN functions: SHA1 in hex, SHA1 HMAC in hex, a BigInteger factory and a big random generator (of 160 bits by default).
+All three distributables share a common API that provide access to a selection of JSBN functions: SHA1 in hex, SHA1 HMAC in hex, a BigInteger factory and a big random generator (of 160 bits by default):
 
 ~~~
 jsbn.init()
@@ -40,7 +37,9 @@ In JSON, an RSA public key looks like this, hex encoded modulus and exponent:
 }
 ~~~
 
-This module is perfect to receive a session public key from and sign a session challenge for web service that are limited to RSA (like PHP). Under 5KB once gzipped, it brings a lot of bangs per bytes to any application.
+This module is perfect to receive a session public key from and sign a session challenge for web service that are limited to RSA (like PHP).
+
+Under 5KB once gzipped, it brings a lot of bangs per bytes to any application.
 
 ### jsbn.ec
 
@@ -62,7 +61,9 @@ Hash challenges with SHA1, returns HEX encoded keys.
 jsbn.hmac(AliceSecret, "challenge") == jsbn.hmac(BobSecret, "challenge");
 ~~~
 
-A little above 10KB once gzipped, it still brings a lot of bangs per bytes to any application that need some serious peer cryptography.
+This module provides just enough to exchange strong cryptographic keys, its does not (directly) support symmetric encryption, supports only SHA1 and HEX encoding.
+
+But it's enough to prevent a wide range of network exploit: identity theft, device impersonation, session hijacking and any other exploit made possible by a man-in-the-middle attack against an HTTP or HTTPS application. 
 
 ### jsbn.rsa.setPrivate
 
@@ -94,3 +95,21 @@ cleartext = privateKey.decrypt(encrypted);
 ~~~
 
 For those rare web applications that demand RSA and EC key exhanges, you won't get a better deal under 12KB gzipped.
+
+Use Cases
+---
+Simple web user registration, identification and authorization against PHP5 or any web platform with decent bindings to a stable release of OpenSSL.
+
+Fast user registration, identification and authorization against Erlang or any web platform with support for the `secp160r1` curve.
+
+Also, there are many fields of application for SHA1, big random and ECDH key exchange.
+
+Note
+---
+    "If you believe that cryptography is a solution to your security problems, then you don't know what cryptography is and you don't know your security problems."
+
+This is even more true for a web application in an open network with an unsafe name resolution system.
+
+A targeted man-in-the-middle attack that exploits DNS is so simple and effective that there is no way to enforce any safety for clients or servers on the web.
+
+Some well applied cryptography can mitigate the defect of DNS and prevent man-in-the-middle attacks against peers allready guarded by a key exchange.
