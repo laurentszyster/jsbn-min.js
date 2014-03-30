@@ -98,18 +98,20 @@ For those rare web applications that demand RSA and EC key exhanges, you won't g
 
 Use Cases
 ---
-Simple web user registration, identification and authorization against PHP5 or any web platform with decent bindings to a stable release of OpenSSL.
+Simple web user registration, identification and authorization against PHP5 or any web platform with decent support for RSA.
 
-Fast user registration, identification and authorization against Erlang or any web platform with support for the `secp160r1` curve.
+Fast user registration, identification and authorization against Erlang or any web platform with decent support for elliptic curve cryptography.
 
-Also, there are many fields of application for SHA1, big random and ECDH key exchange.
+Peer applications that need to hash distributed resource keys and identify peers in their network.
+
+All the fields of application for SHA1, big random and ECDH key exchange.
 
 Note
 ---
-    "If you believe that cryptography is a solution to your security problems, then you don't know what cryptography is and you don't know your security problems."
+"*If you think cryptography is the answer to your problem, then you don't know what your problem is*" - Peter G. Neumann, quoted in the New York Times, February 20 2001.
 
 This is even more true for a web application in an open network with an unsafe name resolution system.
 
 A targeted man-in-the-middle attack that exploits DNS is so simple and effective that there is no way to enforce any safety for clients or servers on the web.
 
-Some well applied cryptography can mitigate the defect of DNS and prevent man-in-the-middle attacks against peers allready guarded by a key exchange.
+Some well applied cryptography can only mitigate the defect of DNS and prevent man-in-the-middle attacks against peers allready guarded by a key exchange.
