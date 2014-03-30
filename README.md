@@ -4,11 +4,6 @@ Three flavors of Tom Wu's library, enclosed with a practical API and minified: `
 
 Synopsis
 ---
-Use the `Makefile` to compile sources and test the distributables:
-
-~~~
-make
-~~~
 
 ### jsbn
 
