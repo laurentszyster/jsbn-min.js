@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jsbn-min.js/test</title>
+<link rel="stylesheet" href="qunit-1.14.0.css" type="text/css" />
+<script type="text/javascript" src="qunit-1.14.0.js"></script>
+</head>
+<body>
+<h1 id="qunit-header">i18format.js/test</h1>
+<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+<div id="qunit-fixture"></div>
+<script type="text/javascript" src="../jsbn-min.js"></script>
+<script type="text/javascript">
+
+// just API tests, not interroperability ,-)
+
+test("jsbn.rsa", function(){
+	var N = "C4E3F7212602E1E396C0B6623CF11D26204ACE3E7D26685E037AD2507DCE82FC28F2D5F8A67FC3AFAB89A6D818D1F4C28CFA548418BD9F8E7426789A67E73E41",
+		E = "10001",
+		D = "7cd1745aec69096129b1f42da52ac9eae0afebbe0bc2ec89253598dcf454960e3e5e4ec9f8c87202b986601dd167253ee3fb3fa047e14f1dfd5ccd37e931b29d",
+		pub = { n : N, e: E },
+		priv = { n: N, e: E, d: D },
+		privateKey = jsbn.rsa.setPrivate(priv),
+		publicKey = jsbn.rsa.setPublic(pub),
+		encrypted = publicKey.encrypt("challenge"),
+		cleartext = privateKey.decrypt(encrypted);
+	equal(cleartext, "challenge");
+});
+
+test("jsbn.ec", function(){
+	var curve = jsbn.ec.curve("secp256r1"),
+		Alice = jsbn.ec.generate(curve),
+		Bob = jsbn.ec.generate(curve),
+		AliceSecret = jsbn.ec.computeKey(curve, Alice.v, Bob.x, Bob.y),
+		BobSecret = jsbn.ec.computeKey(curve, Bob.v, Alice.x, Alice.y),
+		AliceH = jsbn.hmac(AliceSecret, "challenge"),
+		BobH =  jsbn.hmac(BobSecret, "challenge");
+	equal(AliceH, BobH);
+});
+
+</script>
+</body>
+</html>
