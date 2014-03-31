@@ -2,7 +2,7 @@ jsbn-min.js
 ===
 [![Build Status](https://travis-ci.org/laurentszyster/jsbn-min.js.svg)](https://travis-ci.org/laurentszyster/jsbn-min.js)
 
-Three flavors of Tom Wu's library, enclosed with a practical API and minified: `jsbn-min.js`, `jsbn-ecc-min.js` and `jsbn-rsa-min.js`.
+Three flavors of Tom Wu's [RSA and ECC in JavaScript](http://www-cs-students.stanford.edu/~tjw/jsbn/), enclosed with a practical API and minified: `jsbn-min.js`, `jsbn-ecc-min.js` and `jsbn-rsa-min.js`.
 
 Synopsis
 ---
